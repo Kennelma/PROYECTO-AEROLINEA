@@ -8,27 +8,25 @@ use Illuminate\Support\Facades\Log;
 
 class ModuloReportesController extends Controller
 {
-    //VARIABLE GLOBAL QUE GUARDA EL LOCALHOST3000 
-    protected $baseUrl = "http://localhost:3000";
 
         //----PARA SELECCIONAR DATOS DE LAS TABLAS
         public function informacion($tabla)
         {
 
-            $url = "{$this->baseUrl}/ModuloReportes/GetReportes?valor={$tabla}";
+            $url = "http://localhost:3000/ModuloReportes/Obtener_Reportes/{$tabla}";
 
-            $data = [];
+           // Iniciar un array vacío para los datos
+           $data = [];
 
-            $response = Http::get($url);
-                
-            if ($response->successful()) {
-                //Se si cargan los datos los manda a la vista
-                $data = $response->json();
-            } else {
-                //Si vuelve a pasar problemas con la api, esto muestra una alerta
-                $data = [];
-            }
-
+           $response = Http::get($url);
+               
+           if ($response->successful()) {
+               //Se si cargan los datos los manda a la vista
+               $data = $response->json();
+           } else {
+               //Si vuelve a pasar problemas con la api, esto muestra una alerta
+               $data = [];
+           }
     
             $vistas = [
                 'reportes' => 'vistasModuloReportes.vistaReportes',
@@ -47,7 +45,7 @@ class ModuloReportesController extends Controller
           $tabla = $request->input('tabla');
           $id = $request->input('id');
   
-          $url = "{$this->baseUrl}/ModuloReportes/Eliminar_Reporte";
+          $url = "http://localhost:3000/ModuloReportes/Eliminar_Reporte";
   
           $response = Http::delete($url, ['tabla' => $tabla,'id' => $id,]);
   
@@ -60,7 +58,7 @@ class ModuloReportesController extends Controller
         $tabla = $request->input('tabla');
         $valores = $request->input('valores');
         
-        $url = "{$this->baseUrl}/ModuloReportes/Insertar_Reportes";
+        $url = "http://localhost:3000/ModuloReportes/Insertar_Reportes";
   
         $response = Http::post($url, ['tabla' => $tabla,'valores' => $valores,]);
   
