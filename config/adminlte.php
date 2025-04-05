@@ -421,7 +421,12 @@ return [
                 ],
             ],
         ],
-        
+        [
+            'text' => ' Facturas',
+            'url' => 'Facturas',
+            'icon' => 'fas fa-fw fa-file-invoice'
+        ],
+
         /*
         ['header' => 'labels'],
         [

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\ModuloFacturasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ModuloReportesController; 
 use App\Http\Controllers\ModuloNotificacionesController;
@@ -36,5 +38,12 @@ Route::put('/notificaciones/{id}', [ModuloNotificacionesController::class, 'upda
 Route::get('/ModuloReportes/{tabla}', [ModuloReportesController::class, 'informacion'])->name('ModuloReportes.informacion');
 Route::delete('/ModuloReportes/Eliminar', [ModuloReportesController::class, 'eliminar'])->name('ModuloReportes.Eliminar');
 Route::post('/ModuloReportes/Insertar', [ModuloReportesController::class, 'insertar'])->name('ModuloReportes.insertar');
+
+//MODULO FACTURAS
+Route::get('/Facturas', [ModuloFacturasController::class, 'informacion'])->name('Facturas');
+Route::post('/Facturas', [ModuloFacturasController::class, 'insertar']);
+Route::delete('/Facturas/{id}', [ModuloFacturasController::class, 'destroy'])->name('Facturas.destroy');
+Route::put('/Facturas/{id}', [ModuloFacturasController::class, 'update'])->name('Facturas.update');
+
 
 require __DIR__.'/auth.php';
