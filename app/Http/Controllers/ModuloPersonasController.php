@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\Log;
 class ModuloPersonasController extends Controller
 {
 
-    //VARIABLE GLOBAL QUE GUARDA EL LOCALHOST3000 
-    protected $baseUrl = "http://localhost:3000";
     
     //----PARA SELECCIONAR DATOS DE LAS TABLAS
     public function informacion($tabla)
     {
         //URL de la API para obtener los datos de la tabla seleccionada
-        $url = "{$this->baseUrl}/ModuloPersonas/Informacion_Personas/{$tabla}";
+        $url = "http://localhost:3000/ModuloPersonas/Informacion_Personas/{$tabla}";
 
         $data = [];
 
@@ -47,7 +45,7 @@ class ModuloPersonasController extends Controller
         $tabla = $request->input('tabla');
         $id = $request->input('id');
 
-        $url = "{$this->baseUrl}/ModuloPersonas/Eliminar_Persona";
+        $url = "http://localhost:3000/ModuloPersonas/Eliminar_Persona";
 
         $response = Http::delete($url, ['tabla' => $tabla,'id' => $id,]);
 
@@ -65,7 +63,7 @@ class ModuloPersonasController extends Controller
         //Convierte los datos a string
         $valoresString = "('" . implode("', '", $valores) . "')";  
 
-        $url = "{$this->baseUrl}/ModuloPersonas/Insertar_Persona";
+        $url = "http://localhost:3000/ModuloPersonas/Insertar_Persona";
 
         //Se hace  externa en tipo array y se guarda en la variable
         $response = Http::post($url, ['tabla' => $tabla,'valores' => $valoresString,]);
